@@ -11353,6 +11353,7 @@ __metadata:
     react-icons: ^4.8.0
     react-router-dom: ^6.9.0
     react-scripts: 5.0.1
+    tailwindcss: ^3.2.7
     web-vitals: ^2.1.0
   languageName: unknown
   linkType: soft
@@ -11888,7 +11889,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:^3.0.2":
+"tailwindcss@npm:^3.0.2, tailwindcss@npm:^3.2.7":
   version: 3.2.7
   resolution: "tailwindcss@npm:3.2.7"
   dependencies:
