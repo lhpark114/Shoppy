@@ -16,7 +16,7 @@ export default function Navbar() {
         <Link to='/products/new' className='text-2xl'>
           <BsFillPencilFill />
         </Link>
-        <button>Login</button>
+        <button onClick={()=> login()}>Login</button>
       </nav>
     </header>
   );
