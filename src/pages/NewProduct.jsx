@@ -6,6 +6,8 @@ import Button from '../components/ui/Button';
 export default function NewProduct() {
   const [product, setProduct] = useState({});
   const [file, setFile] = useState();
+  const [isUploading, setIsUploading] = useState(false);
+  const [success, setSuccess] = useState();
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -21,17 +23,25 @@ export default function NewProduct() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    uploadImage(file).then((url) => {
-      console.log(url);
-      addNewProduct(product, url);
-      // Firebase에 새로운 제품을 추가함
-    });
+    setIsUploading(true);
+    uploadImage(file)//
+    .then((url) => {
+      addNewProduct(product, url)
+      .then(()=>{
+        setSuccess('성공적으로 제품이 추가되었습니다.');
+        setTimeout(()=> {
+            setSuccess(null);
+        }, 4000);
+      });
+    })
+    .finally(() => setIsUploading(false));
   };
 
   return (
     <section>
       <header>
-        <h1>새로운 제품 등록</h1>
+        <h2>새로운 제품 등록</h2>
+        {success && <p>✅{success}</p>}
       </header>
       {file && <img src={URL.createObjectURL(file)} alt='local file' />}
       <form onSubmit={handleSubmit}>
@@ -83,7 +93,10 @@ export default function NewProduct() {
           required
           onChange={handleChange}
         />
-        <Button text={'제품 등록하기'} />
+        <Button 
+            text={isUploading? '업로드중...' : '제품 등록하기'} 
+            disabled={isUploading}
+        />
       </form>
     </section>
   );
