@@ -9,3 +9,4 @@ export async function uploadImage(file) {
     .then((res)=>res.json())
     .then((data) => data.url);
 }
+

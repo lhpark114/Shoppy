@@ -1,11 +1,12 @@
 import { initializeApp } from "firebase/app";
+import {v4 as uuid} from 'uuid';
 import { 
   getAuth, 
   signInWithPopup, 
   GoogleAuthProvider, 
   signOut, 
   onAuthStateChanged, } from "firebase/auth";
-  import { getDatabase, ref, get } from "firebase/database";
+  import { getDatabase, ref, set, get } from "firebase/database";
 
 
 const firebaseConfig = {
@@ -56,3 +57,13 @@ async function adminUser(user) {
     });
 }
 
+export async function addNewProduct(product, image) {
+  const id = uuid();
+  set(ref(database, `products/${id}`), {
+    ...product, 
+    id,
+    price: parseInt(product.price),
+    image,
+    option: product.options.split(','),
+  });
+}
