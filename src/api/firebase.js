@@ -5,7 +5,7 @@ import {
   GoogleAuthProvider, 
   signOut, 
   onAuthStateChanged, } from "firebase/auth";
-  import { getDatabase, ref, child, get } from "firebase/database";
+  import { getDatabase, ref, get } from "firebase/database";
 
 
 const firebaseConfig = {
