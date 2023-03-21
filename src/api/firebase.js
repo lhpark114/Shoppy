@@ -47,11 +47,11 @@ async function adminUser(user) {
     // 3. 사용자에게 알려줌 {...user, isAdmin: true /false} 
     // - 사용자 정보 그대로 가지고 있으면서 추가하기 (admin인지 아닌지)
     return get(ref(database, 'admins')) //
-    .then((snapshot) =>{
+    .then((snapshot) => {
       if(snapshot.exists()) {
         const admins = snapshot.val();
         const isAdmin = admins.includes(user.uid);
-        return {...user, isAdmin}
+        return {...user, isAdmin};
       }
       return user;
     });
@@ -64,12 +64,12 @@ export async function addNewProduct(product, image) {
     id,
     price: parseInt(product.price),
     image,
-    option: product.options.split(','),
+    options: product.options.split(','),
   });
 }
 
 export async function getProducts() {
-  return get(ref(database, 'products')).then(snapshot => {
+  return get(ref(database, 'products')).then((snapshot) => {
     if(snapshot.exists()) {
       return Object.values(snapshot.val());
     }
